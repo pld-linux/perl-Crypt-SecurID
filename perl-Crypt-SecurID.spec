@@ -9,11 +9,12 @@ Summary:	Crypt::SecurID - generating and verifying SecurID time hash codes
 Summary(pl):	Crypt::SecurID - generowanie i weryfikowanie kodów SecurID time hash
 Name:		perl-Crypt-SecurID
 Version:	0.04
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tgz
 # Source0-md5:	f0ebb7c5e549557a197b2df746f21c91
+Patch0:		%{name}-types.patch
 BuildRequires:	libstdc++-devel
 %{?with_tests:BuildRequires:	perl-Test-Simple >= 0.01}
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -35,6 +36,7 @@ klienckiej.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL \
