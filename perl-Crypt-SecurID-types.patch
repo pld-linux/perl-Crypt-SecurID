@@ -1,0 +1,91 @@
+--- Crypt-SecurID-0.04/sid.h.orig	2003-01-22 02:14:00.000000000 +0100
++++ Crypt-SecurID-0.04/sid.h	2004-05-08 21:17:31.912232005 +0200
+@@ -7,6 +7,8 @@
+ #ifndef SID_H
+ #define SID_H
+ 
++#include <stdint.h>
++
+ /* 
+  * Adaptation based code by I.C. Wiener.  Original copyright:
+  */
+@@ -18,9 +20,9 @@
+  */
+ 
+ typedef union _SID_OCTET {
+-    unsigned long long	Q[1];
+-    unsigned long		D[2];
+-    unsigned short		W[4];
++    uint64_t	Q[1];
++    uint32_t	D[2];
++    uint16_t	W[4];
+     unsigned char		B[8];
+ }   SID_OCTET;
+ 
+--- Crypt-SecurID-0.04/sid.c.orig	2003-01-22 02:14:00.000000000 +0100
++++ Crypt-SecurID-0.04/sid.c	2004-05-08 21:33:25.111566287 +0200
+@@ -16,10 +16,11 @@
+  * I.C. Wiener <icwiener@mailru.com>
+  */
+ 
+-#define __int64 long long
++#include <stdint.h>
++
+ #define __forceinline __inline__
+-#define _lrotr(x, n) ((((unsigned long)(x)) >> ((int) ((n) & 31))) | (((unsigned long)(x)) << ((int) ((-(n)) & 31))))
+-#define _lrotl(x, n) ((((unsigned long)(x)) << ((int) ((n) & 31))) | (((unsigned long)(x)) >> ((int) ((-(n)) & 31))))
++#define _lrotr(x, n) ((((uint32_t)(x)) >> ((int) ((n) & 31))) | (((uint32_t)(x)) << ((int) ((-(n)) & 31))))
++#define _lrotl(x, n) ((((uint32_t)(x)) << ((int) ((n) & 31))) | (((uint32_t)(x)) >> ((int) ((-(n)) & 31))))
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -28,19 +29,19 @@
+ 
+ #define ror32(x, n) _lrotr(x, n)
+ #define rol32(x, n) _lrotl(x, n)
+-#define bswap32(x) (rol32((unsigned long)(x), 8) & 0x00ff00ff | ror32 ((unsigned long)(x), 8) & 0xff00ff00)
++#define bswap32(x) (rol32((uint32_t)(x), 8) & 0x00ff00ff | ror32 ((uint32_t)(x), 8) & 0xff00ff00)
+ 
+ static __forceinline unsigned char ror8 (const unsigned char x, const int n) { 
+ 	return (x >> (n & 7)) | (x << ((-n) & 7)); 
+ }
+-static __forceinline unsigned __int64 rol64 (
+-	const unsigned __int64 x, const int n
++static __forceinline uint64_t rol64 (
++	const uint64_t x, const int n
+ ) { 
+ 	return (x << (n & 63)) | (x >> ((-n) & 63)); 
+ }
+ 
+-static __forceinline unsigned __int64 bswap64 (const unsigned __int64 x) { 
+-	unsigned long a = (unsigned long) x, b = (unsigned long) (x >> 32); return (((unsigned __int64) bswap32 (a)) << 32) | bswap32(b); 
++static __forceinline uint64_t bswap64 (const uint64_t x) { 
++	uint32_t a = (uint32_t) x, b = (uint32_t) (x >> 32); return (((uint64_t) bswap32 (a)) << 32) | bswap32(b); 
+ }
+ 
+ void securid_expand_key_to_4_bit_per_byte (const SID_OCTET source, char *target) {
+--- Crypt-SecurID-0.04/securid.cpp.orig	2003-01-27 04:00:48.000000000 +0100
++++ Crypt-SecurID-0.04/securid.cpp	2004-05-08 21:23:33.735437163 +0200
+@@ -22,6 +22,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdint.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <time.h>
+@@ -32,11 +33,11 @@
+ #include "securid.h"
+ 
+ // some arithmetic defines from sid.c
+-#define sid_lrotr(x, n) ((((unsigned long)(x)) >> ((int) ((n) & 31))) | (((unsigned long)(x)) << ((int) ((-(n)) & 31))))
+-#define sid_lrotl(x, n) ((((unsigned long)(x)) << ((int) ((n) & 31))) | (((unsigned long)(x)) >> ((int) ((-(n)) & 31))))
++#define sid_lrotr(x, n) ((((uint32_t)(x)) >> ((int) ((n) & 31))) | (((uint32_t)(x)) << ((int) ((-(n)) & 31))))
++#define sid_lrotl(x, n) ((((uint32_t)(x)) << ((int) ((n) & 31))) | (((uint32_t)(x)) >> ((int) ((-(n)) & 31))))
+ #define sid_ror32(x, n) sid_lrotr(x, n)
+ #define sid_rol32(x, n) sid_lrotl(x, n)
+-#define sid_bswap32(x) (sid_rol32((unsigned long)(x), 8) & 0x00ff00ff | sid_ror32 ((unsigned long)(x), 8) & 0xff00ff00)
++#define sid_bswap32(x) (sid_rol32((uint32_t)(x), 8) & 0x00ff00ff | sid_ror32 ((uint32_t)(x), 8) & 0xff00ff00)
+ 
+ // constructors
+ SecurID::SecurID() : drft(0) { 
