@@ -10,7 +10,7 @@ Summary(pl):	Crypt::SecurID - generowanie i weryfikowanie kodów SecurID time has
 Name:		perl-Crypt-SecurID
 Version:	0.04
 Release:	1
-License:	GPL
+License:	GPL v2
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tgz
 # Source0-md5:	f0ebb7c5e549557a197b2df746f21c91
