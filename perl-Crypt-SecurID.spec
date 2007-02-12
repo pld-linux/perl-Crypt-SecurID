@@ -6,7 +6,7 @@
 %define		pdir	Crypt
 %define		pnam	SecurID
 Summary:	Crypt::SecurID - generating and verifying SecurID time hash codes
-Summary(pl):	Crypt::SecurID - generowanie i weryfikowanie kodów SecurID time hash
+Summary(pl.UTF-8):   Crypt::SecurID - generowanie i weryfikowanie kodÃ³w SecurID time hash
 Name:		perl-Crypt-SecurID
 Version:	0.04
 Release:	2
@@ -27,11 +27,11 @@ SecurID time-hash codes. Such codes are often useful during identity
 authentication, especially when the code is generated out-of-band
 so that the 64-bit secret key is never on any client machine.
 
-%description -l pl
-Crypt::SecurID to modu³ emulatora do generowania i weryfikowania
-kodów SecurID time-hash. Takie kody s± czêsto przydatne przy
-uwierzytelnianiu, szczególnie kiedy kod jest generowany na zewn±trz,
-tak ¿e 64-bitowy tajny klucz nigdy nie jest obecny na ¿adnej maszynie
+%description -l pl.UTF-8
+Crypt::SecurID to moduÅ‚ emulatora do generowania i weryfikowania
+kodÃ³w SecurID time-hash. Takie kody sÄ… czÄ™sto przydatne przy
+uwierzytelnianiu, szczegÃ³lnie kiedy kod jest generowany na zewnÄ…trz,
+tak Å¼e 64-bitowy tajny klucz nigdy nie jest obecny na Å¼adnej maszynie
 klienckiej.
 
 %prep
