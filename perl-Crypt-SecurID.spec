@@ -6,7 +6,7 @@
 %define		pdir	Crypt
 %define		pnam	SecurID
 Summary:	Crypt::SecurID - generating and verifying SecurID time hash codes
-Summary(pl.UTF-8):   Crypt::SecurID - generowanie i weryfikowanie kodów SecurID time hash
+Summary(pl.UTF-8):	Crypt::SecurID - generowanie i weryfikowanie kodów SecurID time hash
 Name:		perl-Crypt-SecurID
 Version:	0.04
 Release:	2
