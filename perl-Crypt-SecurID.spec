@@ -43,6 +43,7 @@ klienckiej.
 	INSTALLDIRS=vendor
 
 %{__make} \
+	CC="%{__cc}" \
 	LD="%{__cxx}" \
 	OPTIMIZE="%{rpmcflags}"
 
