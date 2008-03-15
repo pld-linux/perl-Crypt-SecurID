@@ -12,9 +12,10 @@ Version:	0.04
 Release:	4
 License:	GPL v2
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tgz
+Source0:	http://www.cpan.org/modules/by-module/Crypt/%{pdir}-%{pnam}-%{version}.tgz
 # Source0-md5:	f0ebb7c5e549557a197b2df746f21c91
 Patch0:		%{name}-types.patch
+URL:		http://search.cpan.org/dist/Crypt-SecurID/
 BuildRequires:	libstdc++-devel
 %{?with_tests:BuildRequires:	perl-Test-Simple >= 0.01}
 BuildRequires:	perl-devel >= 1:5.8.0
