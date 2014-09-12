@@ -66,6 +66,5 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorarch}/Crypt/SecurID.pm
 %{perl_vendorarch}/Crypt/securid.pm
 %dir %{perl_vendorarch}/auto/Crypt/securid
-%{perl_vendorarch}/auto/Crypt/securid/securid.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Crypt/securid/securid.so
 %{_mandir}/man3/*
